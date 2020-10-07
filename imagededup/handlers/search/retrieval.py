@@ -14,28 +14,37 @@ logger = return_logger(__name__)
 
 
 def cosine_similarity_chunk(t: Tuple) -> np.ndarray:
-    return cosine_similarity(t[0][t[1][0] : t[1][1]], t[0]).astype('float16')
+    return cosine_similarity(t[0][t[1][0]: t[1][1]], t[0]).astype('float16')
 
 
 def get_cosine_similarity(
-    X: np.ndarray, verbose: bool = True, chunk_size: int = 1000, threshold: int = 10000
+    X: np.ndarray,
+    verbose: bool = True,
+    chunk_size: int = 1000,
+    threshold: int = 10000,
+    parallel: bool = True,
 ) -> np.ndarray:
     n_rows = X.shape[0]
 
     if n_rows <= threshold:
         return cosine_similarity(X)
-
     else:
         logger.info(
             'Large feature matrix thus calculating cosine similarities in chunks...'
         )
         start_idxs = list(range(0, n_rows, chunk_size))
         end_idxs = start_idxs[1:] + [n_rows]
-        cos_sim = parallelise(
-            cosine_similarity_chunk,
-            [(X, idxs) for i, idxs in enumerate(zip(start_idxs, end_idxs))],
-            verbose,
-        )
+        if parallel:
+            cos_sim = parallelise(
+                cosine_similarity_chunk,
+                [(X, idxs) for i, idxs in enumerate(zip(start_idxs, end_idxs))],
+                verbose,
+            )
+        else:
+            cos_sim = [
+                cosine_similarity_chunk((X, idxs))
+                for idxs in zip(start_idxs, end_idxs)
+            ]
 
         return np.vstack(cos_sim)
 

@@ -198,6 +198,7 @@ class CNN:
         min_similarity_threshold: float,
         scores: bool,
         outfile: Optional[str] = None,
+        parallel: bool = True,
     ) -> Dict:
         """
         Take in dictionary {filename: encoded image}, detects duplicates above the given cosine similarity threshold
@@ -225,7 +226,7 @@ class CNN:
 
         self.logger.info('Start: Calculating cosine similarities...')
 
-        self.cosine_scores = get_cosine_similarity(features, self.verbose)
+        self.cosine_scores = get_cosine_similarity(features, bool(self.verbose), parallel=parallel)
 
         np.fill_diagonal(
             self.cosine_scores, 2.0
@@ -258,6 +259,7 @@ class CNN:
         min_similarity_threshold: float,
         scores: bool,
         outfile: Optional[str] = None,
+        parallel: bool = True,
     ) -> Dict:
         """
         Take in path of the directory in which duplicates are to be detected above the given threshold.
@@ -284,6 +286,7 @@ class CNN:
             min_similarity_threshold=min_similarity_threshold,
             scores=scores,
             outfile=outfile,
+            parallel=parallel,
         )
 
     def find_duplicates(
@@ -293,6 +296,7 @@ class CNN:
         min_similarity_threshold: float = 0.9,
         scores: bool = False,
         outfile: Optional[str] = None,
+        parallel: bool = True,
     ) -> Dict:
         """
         Find duplicates for each file. Take in path of the directory or encoding dictionary in which duplicates are to
@@ -339,6 +343,7 @@ class CNN:
                 min_similarity_threshold=min_similarity_threshold,
                 scores=scores,
                 outfile=outfile,
+                parallel=parallel,
             )
         elif encoding_map:
             result = self._find_duplicates_dict(
@@ -346,6 +351,7 @@ class CNN:
                 min_similarity_threshold=min_similarity_threshold,
                 scores=scores,
                 outfile=outfile,
+                parallel=parallel,
             )
 
         else:
