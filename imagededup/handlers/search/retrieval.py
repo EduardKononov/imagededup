@@ -45,7 +45,7 @@ def get_cosine_similarity(
         else:
             cos_sim = [
                 cosine_similarity_chunk((X, idxs))
-                for idxs in zip(tqdm(start_idxs, end_idxs))
+                for idxs in zip(tqdm(start_idxs), end_idxs)
             ]
 
         return np.vstack(cos_sim)
