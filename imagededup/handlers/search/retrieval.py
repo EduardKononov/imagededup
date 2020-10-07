@@ -3,6 +3,7 @@ from typing import Callable, Dict, Union, Tuple
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+from tqdm import tqdm
 
 from imagededup.handlers.search.bktree import BKTree
 from imagededup.handlers.search.brute_force import BruteForce
