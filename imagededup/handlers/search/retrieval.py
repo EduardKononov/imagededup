@@ -34,6 +34,7 @@ def get_cosine_similarity(
         )
         start_idxs = list(range(0, n_rows, chunk_size))
         end_idxs = start_idxs[1:] + [n_rows]
+        logger.info(f'Parallel: {parallel}')
         if parallel:
             cos_sim = parallelise(
                 cosine_similarity_chunk,
