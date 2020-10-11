@@ -33,19 +33,20 @@ def get_cosine_similarity(
         logger.info(
             'Large feature matrix thus calculating cosine similarities in chunks...'
         )
-        start_idxs = list(range(0, n_rows, chunk_size))
-        end_idxs = start_idxs[1:] + [n_rows]
+        start_indexes = list(range(0, n_rows, chunk_size))
+        end_indexes = start_indexes[1:] + [n_rows]
         logger.info(f'Parallel: {parallel}')
         if parallel:
             cos_sim = parallelise(
                 cosine_similarity_chunk,
-                [(X, idxs) for i, idxs in enumerate(zip(start_idxs, end_idxs))],
+                [(X, indexes) for i, indexes in enumerate(zip(start_indexes, end_indexes))],
                 verbose,
             )
         else:
-            cos_sim = []
-            for idxs in zip(tqdm(start_idxs), end_idxs):
-                cos_sim.append(cosine_similarity_chunk((X, idxs)))
+            cos_sim = [
+                cosine_similarity_chunk((X, indexes))
+                for indexes in zip(tqdm(start_indexes), end_indexes)
+            ]
 
         return np.vstack(cos_sim)
 
