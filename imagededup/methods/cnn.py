@@ -6,7 +6,7 @@ from tqdm import tqdm
 from p_tqdm import p_umap
 
 from imagededup.handlers.search.retrieval import get_cosine_similarity
-from imagededup.utils.general_utils import save_json, get_files_to_remove
+from imagededup.utils.general_utils import save_json, get_files_to_remove, parallelise
 from imagededup.utils.image_utils import load_image, preprocess_image
 from imagededup.utils.logger import return_logger
 
@@ -252,7 +252,7 @@ class CNN:
 
         self.results = {
             key: value
-            for key, value in p_umap(job, tuple(enumerate(self.cosine_scores)))
+            for key, value in parallelise(job, list(enumerate(self.cosine_scores)), True)
         }
 
         self.logger.info('End: Building results.')
