@@ -240,7 +240,6 @@ class CNN:
         self.results = {}
 
         def job(item):
-            tqdm.write(f'ITEM: {item}')
             i, j = item
             duplicates_bool = (j >= min_similarity_threshold) & (j < 2)
 
@@ -254,7 +253,7 @@ class CNN:
 
         self.results = {
             key: value
-            for key, value in p_umap(job, self.cosine_scores)
+            for key, value in p_umap(job, enumerate(self.cosine_scores))
         }
 
         self.logger.info('End: Building results.')
