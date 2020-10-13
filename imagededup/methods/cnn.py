@@ -239,11 +239,11 @@ class CNN:
         self.logger.info('Start: Building results.')
 
         def job(item):
-            i, j = item
-            duplicates_bool = (j >= min_similarity_threshold) & (j < 2)
+            i, similarities = item
+            duplicates_bool = (similarities >= min_similarity_threshold) & (similarities < 2)
 
             if scores:
-                tmp = np.array([*zip(image_ids, j)], dtype=object)
+                tmp = np.array([*zip(image_ids, similarities)], dtype=object)
                 duplicates = map(tuple, tmp[duplicates_bool])
             else:
                 duplicates = image_ids[duplicates_bool]
@@ -252,7 +252,7 @@ class CNN:
 
         self.results = {
             key: value
-            for key, value in p_umap(job, enumerate(self.cosine_scores))
+            for key, value in p_umap(job, tuple(enumerate(self.cosine_scores)))
         }
 
         self.logger.info('End: Building results.')
