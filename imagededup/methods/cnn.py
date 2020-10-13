@@ -237,7 +237,6 @@ class CNN:
         self.logger.info('End: Calculating cosine similarities.')
 
         self.logger.info('Start: Building results.')
-        self.results = {}
 
         def job(item):
             i, j = item
