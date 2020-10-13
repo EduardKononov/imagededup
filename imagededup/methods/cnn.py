@@ -4,11 +4,25 @@ from typing import Dict, List, Optional, Union
 import numpy as np
 from tqdm import tqdm
 from p_tqdm import p_umap
+from functools import partial
 
 from imagededup.handlers.search.retrieval import get_cosine_similarity
 from imagededup.utils.general_utils import save_json, get_files_to_remove, parallelise
 from imagededup.utils.image_utils import load_image, preprocess_image
 from imagededup.utils.logger import return_logger
+
+
+def job(item, scores, min_similarity_threshold, image_ids):
+    i, similarities = item
+    duplicates_bool = (similarities >= min_similarity_threshold) & (similarities < 2)
+
+    if scores:
+        tmp = np.array(tuple(zip(image_ids, similarities)), dtype=object)
+        duplicates = map(tuple, tmp[duplicates_bool])
+    else:
+        duplicates = image_ids[duplicates_bool]
+
+    return image_ids[i], tuple(duplicates)
 
 
 class CNN:
@@ -238,21 +252,11 @@ class CNN:
 
         self.logger.info('Start: Building results.')
 
-        def job(item):
-            i, similarities = item
-            duplicates_bool = (similarities >= min_similarity_threshold) & (similarities < 2)
-
-            if scores:
-                tmp = np.array(tuple(zip(image_ids, similarities)), dtype=object)
-                duplicates = map(tuple, tmp[duplicates_bool])
-            else:
-                duplicates = image_ids[duplicates_bool]
-
-            return image_ids[i], tuple(duplicates)
-
+        partial_job = partial(job, scores=scores, min_similarity_threshold=min_similarity_threshold,
+                              image_ids=image_ids)
         self.results = {
             key: value
-            for key, value in parallelise(job, list(enumerate(self.cosine_scores)), True)
+            for key, value in parallelise(partial_job, list(enumerate(self.cosine_scores)), True)
         }
 
         self.logger.info('End: Building results.')
