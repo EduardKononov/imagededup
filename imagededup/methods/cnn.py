@@ -3,6 +3,7 @@ from typing import Dict, List, Optional, Union
 
 import numpy as np
 from tqdm import tqdm
+from p_tqdm import p_umap
 
 from imagededup.handlers.search.retrieval import get_cosine_similarity
 from imagededup.utils.general_utils import save_json, get_files_to_remove
@@ -237,17 +238,24 @@ class CNN:
 
         self.logger.info('Start: Building results.')
         self.results = {}
-        for i, j in enumerate(tqdm(self.cosine_scores)):
+
+        def job(item):
+            i, j = item
             duplicates_bool = (j >= min_similarity_threshold) & (j < 2)
 
             if scores:
                 tmp = np.array([*zip(image_ids, j)], dtype=object)
-                duplicates = list(map(tuple, tmp[duplicates_bool]))
-
+                duplicates = map(tuple, tmp[duplicates_bool])
             else:
-                duplicates = list(image_ids[duplicates_bool])
+                duplicates = image_ids[duplicates_bool]
 
-            self.results[image_ids[i]] = duplicates
+            return image_ids[i], list(duplicates)
+
+        self.results = {
+            key: value
+            for key, value in p_umap(job, tqdm(self.cosine_scores))
+        }
+
         self.logger.info('End: Building results.')
 
         if outfile and scores:
