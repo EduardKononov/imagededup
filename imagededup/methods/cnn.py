@@ -240,6 +240,7 @@ class CNN:
         self.results = {}
 
         def job(item):
+            tqdm.write(f'ITEM: {item}')
             i, j = item
             duplicates_bool = (j >= min_similarity_threshold) & (j < 2)
 
