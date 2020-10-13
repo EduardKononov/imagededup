@@ -102,6 +102,7 @@ setup(
         'scipy',
         'tensorflow>1.0',
         'tqdm',
+        'p_tqdm',
         'scikit-learn',
         'matplotlib',
     ],
