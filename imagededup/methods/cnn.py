@@ -253,7 +253,7 @@ class CNN:
 
         self.results = {
             key: value
-            for key, value in p_umap(job, tqdm(self.cosine_scores))
+            for key, value in p_umap(job, self.cosine_scores)
         }
 
         self.logger.info('End: Building results.')
