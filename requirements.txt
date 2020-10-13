@@ -4,6 +4,7 @@ PyWavelets~=1.0.3
 scipy
 tensorflow>1.0
 tqdm
+p-tqdm
 scikit-learn
 matplotlib
 # Development dependencies

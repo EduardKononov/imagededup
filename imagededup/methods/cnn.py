@@ -2,6 +2,7 @@ from pathlib import Path, PurePath
 from typing import Dict, List, Optional, Union
 
 import numpy as np
+from p_tqdm import p_umap
 
 from imagededup.handlers.search.retrieval import get_cosine_similarity
 from imagededup.utils.general_utils import save_json, get_files_to_remove
@@ -238,18 +239,26 @@ class CNN:
 
         self.logger.info('End: Calculating cosine similarities.')
 
-        self.results = {}
-        for i, j in enumerate(self.cosine_scores):
-            duplicates_bool = (j >= min_similarity_threshold) & (j < 2)
+        self.logger.info('Start: Building results.')
+
+        def job(item):
+            i, similarities = item
+            duplicates_bool = (similarities >= min_similarity_threshold) & (similarities < 2)
 
             if scores:
-                tmp = np.array([*zip(image_ids, j)], dtype=object)
-                duplicates = list(map(tuple, tmp[duplicates_bool]))
-
+                tmp = np.array(tuple(zip(image_ids, similarities)), dtype=object)
+                duplicates = map(tuple, tmp[duplicates_bool])
             else:
-                duplicates = list(image_ids[duplicates_bool])
+                duplicates = image_ids[duplicates_bool]
 
-            self.results[image_ids[i]] = duplicates
+            return image_ids[i], tuple(duplicates)
+
+        self.results = {
+            key: value
+            for key, value in p_umap(job, tuple(enumerate(self.cosine_scores)))
+        }
+
+        self.logger.info('End: Building results.')
 
         if outfile and scores:
             save_json(results=self.results, filename=outfile, float_scores=True)
