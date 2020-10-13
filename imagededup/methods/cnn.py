@@ -2,6 +2,7 @@ from pathlib import Path, PurePath
 from typing import Dict, List, Optional, Union
 
 import numpy as np
+from tqdm import tqdm
 
 from imagededup.handlers.search.retrieval import get_cosine_similarity
 from imagededup.utils.general_utils import save_json, get_files_to_remove
@@ -234,8 +235,9 @@ class CNN:
 
         self.logger.info('End: Calculating cosine similarities.')
 
+        self.logger.info('Start: Building results.')
         self.results = {}
-        for i, j in enumerate(self.cosine_scores):
+        for i, j in enumerate(tqdm(self.cosine_scores)):
             duplicates_bool = (j >= min_similarity_threshold) & (j < 2)
 
             if scores:
@@ -246,6 +248,7 @@ class CNN:
                 duplicates = list(image_ids[duplicates_bool])
 
             self.results[image_ids[i]] = duplicates
+        self.logger.info('End: Building results.')
 
         if outfile and scores:
             save_json(results=self.results, filename=outfile, float_scores=True)
