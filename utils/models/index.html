@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../plotter/">
+      
+      
+        <link rel="next" href="../../examples/CIFAR10_deduplication/">
       
       
       <link rel="icon" href="../../img/favicon.ico">
@@ -18,7 +22,7 @@
     
     
       
-        <title>General utils - Imagededup</title>
+        <title>Custom Models - Imagededup</title>
       
     
     
@@ -68,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get_files_to_remove" class="md-skip">
+        <a href="#class-custommodel" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              General utils
+              Custom Models
             
           </span>
         </div>
@@ -404,17 +408,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -428,7 +434,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             API reference
@@ -588,17 +594,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -612,7 +620,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Utils
@@ -644,10 +652,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../models/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Custom Models
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -656,6 +682,147 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-custommodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      class CustomModel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="class CustomModel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#args" class="md-nav__link">
+    <span class="md-ellipsis">
+      Args
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-mobilenetv3" class="md-nav__link">
+    <span class="md-ellipsis">
+      class MobilenetV3
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="class MobilenetV3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      forward
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-vit" class="md-nav__link">
+    <span class="md-ellipsis">
+      class ViT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="class ViT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init___1" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      forward
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-efficientnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      class EfficientNet
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="class EfficientNet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init___2" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      forward
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -804,13 +971,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get_files_to_remove" class="md-nav__link">
+  <a href="#class-custommodel" class="md-nav__link">
     <span class="md-ellipsis">
-      get_files_to_remove
+      class CustomModel
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="get_files_to_remove">
+    <nav class="md-nav" aria-label="class CustomModel">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -822,34 +989,34 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#returns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Returns
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#save_json" class="md-nav__link">
+  <a href="#class-mobilenetv3" class="md-nav__link">
     <span class="md-ellipsis">
-      save_json
+      class MobilenetV3
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="save_json">
+    <nav class="md-nav" aria-label="class MobilenetV3">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#args_1" class="md-nav__link">
+  <a href="#__init__" class="md-nav__link">
     <span class="md-ellipsis">
-      Args
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      forward
     </span>
   </a>
   
@@ -861,29 +1028,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parallelise" class="md-nav__link">
+  <a href="#class-vit" class="md-nav__link">
     <span class="md-ellipsis">
-      parallelise
+      class ViT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="class ViT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init___1" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#generate_files" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#forward_1" class="md-nav__link">
     <span class="md-ellipsis">
-      generate_files
+      forward
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#generate_relative_names" class="md-nav__link">
+  <a href="#class-efficientnet" class="md-nav__link">
     <span class="md-ellipsis">
-      generate_relative_names
+      class EfficientNet
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="class EfficientNet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init___2" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      forward
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -905,45 +1111,50 @@
   
 
 
-  <h1>General utils</h1>
+  <h1>Custom Models</h1>
 
-<h3 id="get_files_to_remove">get_files_to_remove</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_files_to_remove</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span>
-</code></pre></div>
-
-<p>Get a list of files to remove.</p>
+<h2 id="class-custommodel">class CustomModel</h2>
+<p>A named tuple that can be used to initialize a custom PyTorch model.</p>
 <h5 id="args">Args</h5>
 <ul>
-<li><strong>duplicates</strong>: A dictionary with file name as key and a list of duplicate file names as value.</li>
-</ul>
-<h5 id="returns">Returns</h5>
-<h3 id="save_json">save_json</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">float_scores</span><span class="p">)</span>
-</code></pre></div>
-
-<p>Save results with a filename.</p>
-<h5 id="args_1">Args</h5>
-<ul>
 <li>
-<p><strong>results</strong>: Dictionary of results to be saved.</p>
+<p><strong>name</strong>: The name of the custom model. Default is 'default_model'.</p>
 </li>
 <li>
-<p><strong>filename</strong>: Name of the file to be saved.</p>
+<p><strong>model</strong>: The PyTorch model object which is a subclass of <code>torch.nn.Module</code> and implements the <code>forward</code> method and output a tensor of shape (batch_size x features). Alternatively, a <strong>call</strong> method is also accepted.. Default is None.</p>
 </li>
 <li>
-<p><strong>float_scores</strong>: boolean to indicate if scores are floats.</p>
+<p><strong>transform</strong>: A function that transforms a PIL.Image object into a PyTorch tensor that will be applied to each image before being fed to the model. Should correspond to the preprocessing logic of the supplied model. Default is None.</p>
 </li>
 </ul>
-<h3 id="parallelise">parallelise</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">parallelise</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">num_workers</span><span class="p">)</span>
+<h2 id="class-mobilenetv3">class MobilenetV3</h2>
+<h3 id="__init__">__init__</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">()</span>
 </code></pre></div>
 
-<h3 id="generate_files">generate_files</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">generate_files</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">recursive</span><span class="p">)</span>
+<p>Initialize a mobilenetv3 model, cuts it at the global average pooling layer and returns the output features.</p>
+<h3 id="forward">forward</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="generate_relative_names">generate_relative_names</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">generate_relative_names</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+<h2 id="class-vit">class ViT</h2>
+<h3 id="__init___1">__init__</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Initialize a ViT model, takes mean of the final encoder layer outputs and returns those as features for a given image.</p>
+<h3 id="forward_1">forward</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="class-efficientnet">class EfficientNet</h2>
+<h3 id="__init___2">__init__</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Initializes an EfficientNet model, cuts it at the global average pooling layer and returns the output features.</p>
+<h3 id="forward_2">forward</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 
 
